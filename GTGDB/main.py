@@ -32,7 +32,7 @@ def Register():
         username = request.form['username']
         password = request.form['password']
         if db.RegisterUser(username, password):
-            return redirect("/")
+            return redirect("/login")
     return render_template("register.html")
 
 @app.route("/add", methods=["GET","POST"])
