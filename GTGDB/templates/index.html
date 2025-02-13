@@ -42,7 +42,11 @@
             <td>{{ review['game'] }}</td>
             <td>{{ review['score'] }}</td>
             <td>{{ review['review'] }}</td> 
-            <td><a href="{{ url_for('Update', review_id=review['id']) }}"><button>Update</button></a></td>          
+            <td>
+                {% if session['username'] and review['user_id'] == session['id'] %}
+                <a href="{{ url_for('Update', review_id=review['id']) }}"><button>Update</button></a>
+                {% endif %}
+            </td>          
         </tr>
         {% endfor %}
     </tbody>
