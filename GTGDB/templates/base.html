@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- This line blocks cross site scripting -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+
+    <title>Rock, Paper, RATE!</title>
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="lil" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="rainbow" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="lil" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="rainbow" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="lil" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="rainbow" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="lil" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="rainbow" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="lil" width="auto" height="auto">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="rainbow" width="auto" height="auto">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+
+<body>
+
+    <h1 class="banner">Rock, Paper, RATE!</h1>
+    
+    <!-- Include a navigation menu -->
+    <nav>
+        <a href="/">Ratings</a>
+
+        {% if not session['username'] %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        {% else %}
+        <a href="/logout">Logout</a>
+        {% endif %}
+        
+        <div class="nav-banner-container">
+            <img src="{{ url_for('static', filename='images/pixel_banner.gif') }}" alt="Pixel Banner" class="nav-banner">
+        </div>
+    </nav>
+ddd
+    <!-- This section will contain the page content -->
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <!-- This script will be for the service worker -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

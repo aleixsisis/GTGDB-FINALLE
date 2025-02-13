@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Update Your review</h2>
+<form method="POST" action="{{ url_for('Update', review_id=review['id']) }}">
+    <label for="score">Score:</label>
+    <input type="text" id="score" name="score" value="{{ review['score'] }}" required>
+    <br>
+    <label for="review">Review:</label>
+    <input type="text" id="review" name="review" value="{{ review['review'] }}" required>
+    <br>
+    <button type="submit">Update</button>
+</form>
+<br>
+<a href="{{ url_for('Home') }}">Back to Home</a>
+{% endblock %}

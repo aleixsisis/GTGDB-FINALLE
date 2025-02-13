@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <p>Welcome to Rock, Paper, Rate! Its a database filled with user reviews of your favourite (and not-so-favourite) video games. So, make an account, sit back and rock, paper, Rate!</p>
+
+
+    {% if session['username'] %}
+    <br>
+    <p>Hello {{ session['username'] }}</p>
+    <div class="button-container">
+        <a href="/add"><button>Add review?</button></a>
+    </div>
+    {% else %}
+    <div class="button-container">
+        <a href="/login"><button>Login to add review</button></a>
+    </div>
+    {% endif %}
+
+</div>
+
+<br>
+
+<table class="guess_table">
+
+    <thead>
+        <th>Date</th>
+        <th>User</th>
+        <th>Game</th>
+        <th>Score</th>
+        <th>Review</th>
+        <th>Edit</th>
+    </thead>
+
+    <tbody>
+        {% for review in reviews %}
+        <tr>
+            <td>{{ review['date'] }}</td>
+            <td>{{ review['username'] }}</td>
+            <td>{{ review['game'] }}</td>
+            <td>{{ review['score'] }}</td>
+            <td>{{ review['review'] }}</td> 
+            <td><a href="{{ url_for('Update', review_id=review['id']) }}"><button>Update</button></a></td>          
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
