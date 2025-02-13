@@ -46,6 +46,7 @@ def Add():
         score = request.form['score']
         review = request.form['review']
         db.AddReview(user_id, date, game, score, review)
+        return redirect("/")
     return render_template("add.html")
 
 @app.route("/update/<int:review_id>", methods=["GET", "POST"])
