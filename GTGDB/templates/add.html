@@ -3,17 +3,39 @@
 {% block content %}
 {% if session['username'] %}
 <h2>Add a rating?</h2>
-<form action="/add" method="post">
+<form action="/add" method="post" onsubmit="return validateForm()">
     <label>Game: </label>
     <input type="text" name="game" id="game" required>
-    <label>Review: </label>
+    <label>Review (max 10 words): </label>
     <input type="text" name="review" id="review" required>
     <label>Date: </label>
     <input type="date" name="date" id="date" required>
-    <label>Rating: </label>
-    <input type="number" name="score" id="score" required>
+    <label>Rating (max 10): </label>
+    <input type="number" name="score" id="score" required max="10">
     <input type="submit" value="Add rating">
 </form>
+<script>
+function validateForm() {
+    const review = document.getElementById('review').value;
+    const score = document.getElementById('score').value;
+    const wordCount = review.split(' ').length;
+    if (wordCount > 10) {
+        alert('Review cannot exceed 10 words.');
+        return false;
+    }
+    if (score > 10) {
+        alert('Rating cannot exceed 10.');
+        return false;
+    }
+    return true;
+}
+
+// Set the date input to today's date
+document.addEventListener('DOMContentLoaded', (event) => {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').value = today;
+});
+</script>
 {% else %}
 <p>Please <a href="/login">login</a> to add a review.</p>
 {% endif %}
